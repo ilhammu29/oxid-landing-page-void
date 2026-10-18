@@ -142,6 +142,9 @@ export const App: React.FC = () => {
   const [charIndex, setCharIndex] = useState<number>(0);
   const [prodIndex, setProdIndex] = useState<number>(0);
 
+  // Mobile active tab for Stage 4 (Operatives vs Protocols on small screens)
+  const [stage4MobileTab, setStage4MobileTab] = useState<'operatives' | 'protocols'>('operatives');
+
   // Audio control
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
@@ -748,7 +751,7 @@ export const App: React.FC = () => {
           Vanish instantly on zoom-in to Video 1, positioned below top master navbar
           ========================================================================= */}
       <aside 
-        className={`absolute left-0 top-16 md:top-20 bottom-0 w-16 md:w-20 z-40 flex flex-col items-center justify-center gap-7 border-r border-[#E83EFF]/10 bg-[#07060B]/50 backdrop-blur-md transition-all duration-200 ease-out md:scale-[0.85] lg:scale-[0.80] origin-left ${
+        className={`hidden md:flex absolute left-0 top-16 md:top-20 bottom-0 w-16 md:w-20 z-40 flex-col items-center justify-center gap-7 border-r border-[#E83EFF]/10 bg-[#07060B]/50 backdrop-blur-md transition-all duration-200 ease-out md:scale-[0.85] lg:scale-[0.80] origin-left ${
           stage === 'stage3_active' && !isZoomingInV3 && !isVoidDarkness
             ? 'opacity-100 translate-x-0 pointer-events-auto'
             : 'opacity-0 -translate-x-full pointer-events-none'
@@ -825,14 +828,16 @@ export const App: React.FC = () => {
             </div>
 
             {/* Zone 3: Right Action Buttons (Pushed to the Far Right Corner) */}
-            <div className="flex items-center justify-end min-w-0 gap-2.5 sm:gap-3.5 z-10">
-              <GenshinPillButton
-                accent="purple"
-                icon={<span className="text-[#E83EFF] text-xs drop-shadow-[0_0_6px_#E83EFF]">✦</span>}
-                title="Account Login"
-              >
-                LOG IN
-              </GenshinPillButton>
+            <div className="flex items-center justify-end min-w-0 gap-1.5 xs:gap-2 sm:gap-3.5 z-10">
+              <div className="hidden xs:flex">
+                <GenshinPillButton
+                  accent="purple"
+                  icon={<span className="text-[#E83EFF] text-xs drop-shadow-[0_0_6px_#E83EFF]">✦</span>}
+                  title="Account Login"
+                >
+                  LOG IN
+                </GenshinPillButton>
+              </div>
 
               <GenshinPillButton
                 accent="purple"
@@ -842,7 +847,7 @@ export const App: React.FC = () => {
                 }
                 title="Zoom into Blackhole & Replay Sequence"
               >
-                WARP REPLAY
+                <span className="hidden sm:inline">WARP </span>REPLAY
               </GenshinPillButton>
 
               {/* Audio Orb Toggle */}
@@ -851,9 +856,9 @@ export const App: React.FC = () => {
                 onClick={() => setSoundEnabled(!soundEnabled)}
                 aria-label={soundEnabled ? "Mute audio" : "Unmute audio"}
                 title={soundEnabled ? "Sound: ON" : "Sound: OFF"}
-                className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[#E83EFF]/60 hover:border-[#E83EFF] bg-[#160728]/80 hover:bg-[#2E1052] flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(232,62,255,0.3)] hover:shadow-[0_0_25px_rgba(232,62,255,0.7)] text-white flex-shrink-0"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border border-[#E83EFF]/60 hover:border-[#E83EFF] bg-[#160728]/80 hover:bg-[#2E1052] flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(232,62,255,0.3)] hover:shadow-[0_0_25px_rgba(232,62,255,0.7)] text-white flex-shrink-0"
               >
-                {soundEnabled ? <Volume2 className="w-4 h-4 text-white" /> : <VolumeX className="w-4 h-4 text-red-400" />}
+                {soundEnabled ? <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /> : <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />}
               </button>
             </div>
           </div>
@@ -874,17 +879,19 @@ export const App: React.FC = () => {
             )}
 
             {/* Right Nav Controls for Stage 1, 2, 4 */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 xs:gap-2.5 sm:gap-3">
               {/* Stage 1 Actions */}
               {stage === 'stage1_looping' && (
-                <div className="flex items-center gap-2.5 sm:gap-3.5 animate-fade-in">
-                  <GenshinPillButton
-                    accent="purple"
-                    icon={<span className="text-[#E83EFF] text-xs drop-shadow-[0_0_6px_#E83EFF]">✦</span>}
-                    title="Account Login"
-                  >
-                    LOG IN
-                  </GenshinPillButton>
+                <div className="flex items-center gap-1.5 xs:gap-2.5 sm:gap-3.5 animate-fade-in">
+                  <div className="hidden xs:flex">
+                    <GenshinPillButton
+                      accent="purple"
+                      icon={<span className="text-[#E83EFF] text-xs drop-shadow-[0_0_6px_#E83EFF]">✦</span>}
+                      title="Account Login"
+                    >
+                      LOG IN
+                    </GenshinPillButton>
+                  </div>
 
                   <GenshinPillButton
                     accent="purple"
@@ -896,12 +903,10 @@ export const App: React.FC = () => {
                     }
                     title="Initiate Singularity Sequence"
                   >
-                    WARP REPLAY
+                    <span className="hidden sm:inline">WARP </span>REPLAY
                   </GenshinPillButton>
                 </div>
               )}
-
-
 
               {/* Stage 4 Actions */}
               {stage === 'stage4_product' && (
@@ -909,12 +914,12 @@ export const App: React.FC = () => {
                   type="button"
                   onClick={handleReturnToHomeFromV4}
                   title="Return to Home Screen"
-                  className={`px-4 py-2 rounded-full border border-[#38E1FF]/40 bg-[#100B18]/70 hover:bg-[#38E1FF]/20 text-xs font-mono text-[#F5F1FA] hover:text-white shadow-[0_0_16px_rgba(56,225,255,0.25)] hover:shadow-[0_0_24px_rgba(56,225,255,0.5)] backdrop-blur-md transition-all duration-300 flex items-center gap-2 group ${
+                  className={`px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[#38E1FF]/40 bg-[#100B18]/70 hover:bg-[#38E1FF]/20 text-[10px] sm:text-xs font-mono text-[#F5F1FA] hover:text-white shadow-[0_0_16px_rgba(56,225,255,0.25)] hover:shadow-[0_0_24px_rgba(56,225,255,0.5)] backdrop-blur-md transition-all duration-300 flex items-center gap-1.5 sm:gap-2 group ${
                     isStage4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
                   }`}
                 >
                   <Home className="w-3.5 h-3.5 text-[#38E1FF] group-hover:scale-110 transition-transform" />
-                  <span>RETURN HOME</span>
+                  <span><span className="hidden xs:inline">RETURN </span>HOME</span>
                 </button>
               )}
 
@@ -924,9 +929,9 @@ export const App: React.FC = () => {
                 onClick={() => setSoundEnabled(!soundEnabled)}
                 aria-label={soundEnabled ? "Mute audio" : "Unmute audio"}
                 title={soundEnabled ? "Sound: ON" : "Sound: OFF"}
-                className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-[#E83EFF]/60 hover:border-[#E83EFF] bg-[#160728]/80 hover:bg-[#2E1052] flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(232,62,255,0.3)] hover:shadow-[0_0_25px_rgba(232,62,255,0.7)] text-white"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full border border-[#E83EFF]/60 hover:border-[#E83EFF] bg-[#160728]/80 hover:bg-[#2E1052] flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(232,62,255,0.3)] hover:shadow-[0_0_25px_rgba(232,62,255,0.7)] text-white"
               >
-                {soundEnabled ? <Volume2 className="w-4 h-4 text-white" /> : <VolumeX className="w-4 h-4 text-red-400" />}
+                {soundEnabled ? <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" /> : <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />}
               </button>
             </div>
           </>
@@ -1019,79 +1024,79 @@ export const App: React.FC = () => {
             Scaled ~80% on desktop (origin-right)
             ========================================================================= */}
         <section 
-          className={`absolute inset-0 w-full h-full pl-20 md:pl-28 pr-6 md:pr-14 lg:pr-20 flex flex-col justify-center items-end transition-all duration-200 ease-out z-30 ${
+          className={`absolute inset-0 w-full h-full px-4 sm:px-8 md:pl-28 md:pr-14 lg:pr-20 flex flex-col justify-center items-center md:items-end transition-all duration-200 ease-out z-30 ${
             stage === 'stage3_active' && !isZoomingInV3 && !isVoidDarkness
               ? 'opacity-100 translate-y-0 pointer-events-auto'
               : 'opacity-0 translate-y-4 pointer-events-none'
           }`}
         >
-          <div className="w-full md:max-w-xl lg:max-w-2xl text-left flex flex-col items-start -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20 md:scale-[0.85] lg:scale-[0.80] origin-right">
+          <div className="w-full md:max-w-xl lg:max-w-2xl text-center md:text-left flex flex-col items-center md:items-start -mt-4 sm:-mt-8 md:-mt-16 lg:-mt-20 md:scale-[0.85] lg:scale-[0.80] origin-right">
             
             <div className="flex items-center gap-3 mb-2 md:mb-3">
               <div className="flex items-center gap-2.5">
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-[#E83EFF] drop-shadow-[0_0_10px_#E83EFF]" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#E83EFF] drop-shadow-[0_0_10px_#E83EFF]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2L15 8.5L22 9.5L17 14.5L18.5 21.5L12 18L5.5 21.5L7 14.5L2 9.5L9 8.5L12 2Z" />
                 </svg>
-                <div className="flex flex-col">
-                  <span className="font-cinzel text-xl md:text-2xl font-extrabold tracking-[0.28em] text-white drop-shadow-[0_0_16px_rgba(232,62,255,0.7)]">
+                <div className="flex flex-col text-left">
+                  <span className="font-cinzel text-lg sm:text-xl md:text-2xl font-extrabold tracking-[0.24em] sm:tracking-[0.28em] text-white drop-shadow-[0_0_16px_rgba(232,62,255,0.7)]">
                     OXID
                   </span>
-                  <span className="text-[8px] font-mono tracking-[0.45em] text-[#A59BB6] uppercase -mt-0.5">
+                  <span className="text-[7px] sm:text-[8px] font-mono tracking-[0.35em] sm:tracking-[0.45em] text-[#A59BB6] uppercase -mt-0.5">
                     TECHNOLOGY STUDIO
                   </span>
                 </div>
               </div>
             </div>
 
-            <h1 className="font-cinzel font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.06] tracking-[0.05em] text-white uppercase cinematic-shadow mb-2 md:mb-3">
+            <h1 className="font-cinzel font-bold text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.08] sm:leading-[1.06] tracking-[0.04em] sm:tracking-[0.05em] text-white uppercase cinematic-shadow mb-2 md:mb-3">
               EXPERIENCE SEVEN<br />
-              <span className="bg-gradient-to-r from-white via-[#F5D8FF] to-[#D5A0FF] bg-clip-text text-transparent font-display font-extrabold tracking-[0.14em] block drop-shadow-[0_0_20px_rgba(232,62,255,0.45)]">
+              <span className="bg-gradient-to-r from-white via-[#F5D8FF] to-[#D5A0FF] bg-clip-text text-transparent font-display font-extrabold tracking-[0.1em] sm:tracking-[0.14em] block drop-shadow-[0_0_20px_rgba(232,62,255,0.45)]">
                 REALMS TEEMING WITH CODE
               </span>
             </h1>
 
-            <p className="text-xs sm:text-sm md:text-[15px] font-light tracking-[0.07em] text-[#D0C5E2] mb-5 md:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            <p className="text-[11px] xs:text-xs sm:text-sm md:text-[15px] font-light tracking-[0.05em] sm:tracking-[0.07em] text-[#D0C5E2] mb-4 sm:mb-5 md:mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               Released on Multiple Platforms — <span className="text-[#E83EFF] font-medium">Enter the Void!</span>
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 md:gap-3.5 w-full">
-              <a href="#ps5" className="glass-panel rounded-xl px-3 py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2.5 transition-all duration-300 group cursor-pointer">
-                <svg className="w-5 h-5 text-white group-hover:text-[#38E1FF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3.5 w-full max-w-lg md:max-w-none">
+              <a href="#ps5" className="glass-panel rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2 sm:gap-2.5 transition-all duration-300 group cursor-pointer">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-[#38E1FF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8.2 16.5c-1.3-.2-2.1-.8-2.1-1.6 0-1.1 1.3-1.8 3.3-2.1v2.3c-.4.8-.8 1.2-1.2 1.4zm10.6-2.5c-.2-.6-.9-1-1.8-1.2v2.8c1.3-.2 1.9-.9 1.8-1.6zm-5.4-8.8v11.7c-1.2.6-2.2.9-3.2.9-1.9 0-3.3-.8-3.3-2.3 0-1.7 1.8-2.6 4.4-2.9v-2c-3.7.3-6.6 1.7-6.6 4.7 0 2.8 2.5 4.3 6.1 4.3 1.8 0 3.3-.4 4.7-1.1v.6h2.2V5.2h-4.3zm6.6 6.3c-2.3-.3-4.5-.4-6.6-.4v2c1.7 0 3.3.1 4.6.3.8.1 1.4.3 1.7.5.3.3.3.6.1.9-.3.4-1 .6-2.1.7v2c2.1-.1 3.7-.7 4.3-1.8.6-1.1.2-2.8-2-4.2z" />
                 </svg>
                 <div className="flex flex-col text-left">
-                  <span className="text-[9px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Console</span>
-                  <span className="text-[11px] md:text-xs font-bold tracking-wider text-white group-hover:text-[#38E1FF] transition-colors">PS5 · PS4</span>
+                  <span className="text-[7px] sm:text-[9px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Console</span>
+                  <span className="text-[10px] xs:text-[11px] md:text-xs font-bold tracking-wider text-white group-hover:text-[#38E1FF] transition-colors">PS5 · PS4</span>
                 </div>
               </a>
 
-              <a href="#ios" className="glass-panel rounded-xl px-3 py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2.5 transition-all duration-300 group cursor-pointer">
-                <svg className="w-5 h-5 text-white group-hover:text-[#E83EFF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <a href="#ios" className="glass-panel rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2 sm:gap-2.5 transition-all duration-300 group cursor-pointer">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-[#E83EFF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.64 1.35-.57.65-1.07 1.71-.93 2.73 1 .08 2.02-.48 2.64-1.23z" />
                 </svg>
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Download</span>
-                  <span className="text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#E83EFF] transition-colors">App Store</span>
+                  <span className="text-[7px] sm:text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Download</span>
+                  <span className="text-[10px] xs:text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#E83EFF] transition-colors">App Store</span>
                 </div>
               </a>
 
-              <a href="#android" className="glass-panel rounded-xl px-3 py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2.5 transition-all duration-300 group cursor-pointer">
-                <svg className="w-5 h-5 text-[#38E1FF] group-hover:text-[#FF3D72] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <a href="#android" className="glass-panel rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2 sm:gap-2.5 transition-all duration-300 group cursor-pointer">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#38E1FF] group-hover:text-[#FF3D72] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M3.609 1.814L13.793 12 3.61 22.186c-.378-.4-.61-.954-.61-1.597V3.411c0-.643.232-1.197.61-1.597zm11.246 11.248l2.585 2.585-11.892 6.845 9.307-9.43zm0-2.124L5.548 1.508 17.44 8.353l-2.585 2.585zm1.414 1.414l3.432-1.977c1.071-.617 1.071-1.625 0-2.242l-3.432-1.977-2.121 2.121 2.121 2.075z" />
                 </svg>
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">GET IT ON</span>
-                  <span className="text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#FF3D72] transition-colors">Google Play</span>
+                  <span className="text-[7px] sm:text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">GET IT ON</span>
+                  <span className="text-[10px] xs:text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#FF3D72] transition-colors">Google Play</span>
                 </div>
               </a>
 
-              <a href="#windows" className="glass-panel rounded-xl px-3 py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2.5 transition-all duration-300 group cursor-pointer">
-                <svg className="w-5 h-5 text-white group-hover:text-[#38E1FF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <a href="#windows" className="glass-panel rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 md:px-3.5 md:py-2.5 flex items-center justify-center gap-2 sm:gap-2.5 transition-all duration-300 group cursor-pointer">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-[#38E1FF] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.802" />
                 </svg>
                 <div className="flex flex-col text-left">
-                  <span className="text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Desktop</span>
-                  <span className="text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#38E1FF] transition-colors">Windows</span>
+                  <span className="text-[7px] sm:text-[8px] uppercase font-mono tracking-wider text-[#A59BB6] leading-none">Desktop</span>
+                  <span className="text-[10px] xs:text-[11px] md:text-xs font-bold tracking-wide text-white group-hover:text-[#38E1FF] transition-colors">Windows</span>
                 </div>
               </a>
             </div>
@@ -1103,14 +1108,54 @@ export const App: React.FC = () => {
             Perfect Vertical Center Alignment without Overflow or Clipping
             ========================================================================= */}
         {stage === 'stage4_product' && (
-          <section className="absolute inset-0 w-full h-full px-4 sm:px-6 md:px-10 lg:px-14 flex items-center justify-between pointer-events-auto overflow-hidden z-40 my-auto">
-            <div className="w-full max-w-[1580px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 lg:gap-8 my-auto py-2 md:scale-[0.82] lg:scale-[0.80] origin-center">
+          <section className="absolute inset-0 w-full h-full px-3 xs:px-4 sm:px-6 md:px-10 lg:px-14 flex flex-col justify-center pointer-events-auto overflow-hidden z-40 my-auto">
+            
+            {/* Mobile Tab Switcher (Visible ONLY on Mobile < md) */}
+            <div className={`flex md:hidden items-center justify-center gap-2 mb-2 w-full z-20 transition-all duration-500 ${
+              isStage4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+            }`}>
+              <button
+                type="button"
+                onClick={() => {
+                  soundFX.playSubtleClick();
+                  setStage4MobileTab('operatives');
+                }}
+                className={`px-3.5 py-1.5 rounded-full text-[11px] font-cinzel font-bold tracking-[0.14em] transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                  stage4MobileTab === 'operatives'
+                    ? 'bg-[#E83EFF] text-white shadow-[0_0_15px_rgba(232,62,255,0.6)] border border-[#E83EFF]'
+                    : 'bg-[#100B18]/80 text-[#A59BB6] border border-[#E83EFF]/30 hover:text-white'
+                }`}
+              >
+                <span>✦</span>
+                <span>OPERATIVES</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  soundFX.playSubtleClick();
+                  setStage4MobileTab('protocols');
+                }}
+                className={`px-3.5 py-1.5 rounded-full text-[11px] font-cinzel font-bold tracking-[0.14em] transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                  stage4MobileTab === 'protocols'
+                    ? 'bg-[#38E1FF] text-[#07060B] shadow-[0_0_15px_rgba(56,225,255,0.6)] border border-[#38E1FF]'
+                    : 'bg-[#100B18]/80 text-[#A59BB6] border border-[#38E1FF]/30 hover:text-white'
+                }`}
+              >
+                <span>✦</span>
+                <span>PROTOCOLS</span>
+              </button>
+            </div>
+
+            <div className="w-full max-w-[1580px] mx-auto flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 md:gap-6 lg:gap-8 my-auto py-1 md:py-2 md:scale-[0.82] lg:scale-[0.80] origin-center">
               
               {/* ---------------------------------------------------------------------
                   LEFT CARDBOX: Transparent Character Spotlight Carousel (No-BG Image)
                   Vertically Centered & Symmetrical
                   --------------------------------------------------------------------- */}
-              <div className={`w-full md:w-[380px] lg:w-[410px] xl:w-[430px] max-h-[calc(100vh-140px)] md:max-h-[78vh] bg-[#100B18]/50 border border-[#E83EFF]/30 hover:border-[#E83EFF]/60 rounded-2xl p-4 sm:p-5 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.65)] flex flex-col justify-between transition-all duration-700 ease-out ${
+              <div className={`${
+                stage4MobileTab === 'operatives' ? 'flex' : 'hidden md:flex'
+              } w-full max-w-[380px] md:max-w-none md:w-[380px] lg:w-[410px] xl:w-[430px] max-h-[calc(100vh-140px)] md:max-h-[78vh] bg-[#100B18]/50 border border-[#E83EFF]/30 hover:border-[#E83EFF]/60 rounded-2xl p-3.5 sm:p-5 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.65)] flex-col justify-between transition-all duration-700 ease-out ${
                 isStage4Visible ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 -translate-x-12 pointer-events-none'
               }`}>
                 
@@ -1128,7 +1173,7 @@ export const App: React.FC = () => {
                 </div>
 
                 {/* Character Visual: Transparent Art (No-Background) */}
-                <div className="relative w-full h-36 sm:h-40 md:h-44 flex items-center justify-center overflow-hidden my-1">
+                <div className="relative w-full h-32 xs:h-36 sm:h-40 md:h-44 flex items-center justify-center overflow-hidden my-1">
                   <div 
                     className="absolute w-32 h-32 md:w-36 md:h-36 rounded-full blur-2xl opacity-40 transition-colors duration-500 pointer-events-none"
                     style={{ backgroundColor: activeChar.accentColor }}
@@ -1218,7 +1263,9 @@ export const App: React.FC = () => {
                   RIGHT CARDBOX: Transparent Product Ecosystem Carousel
                   Vertically Centered & Symmetrical
                   --------------------------------------------------------------------- */}
-              <div className={`w-full md:w-[380px] lg:w-[410px] xl:w-[430px] max-h-[calc(100vh-140px)] md:max-h-[78vh] bg-[#100B18]/50 border border-[#38E1FF]/30 hover:border-[#38E1FF]/60 rounded-2xl p-4 sm:p-5 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.65)] flex flex-col justify-between transition-all duration-700 ease-out delay-100 ${
+              <div className={`${
+                stage4MobileTab === 'protocols' ? 'flex' : 'hidden md:flex'
+              } w-full max-w-[380px] md:max-w-none md:w-[380px] lg:w-[410px] xl:w-[430px] max-h-[calc(100vh-140px)] md:max-h-[78vh] bg-[#100B18]/50 border border-[#38E1FF]/30 hover:border-[#38E1FF]/60 rounded-2xl p-3.5 sm:p-5 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.65)] flex-col justify-between transition-all duration-700 ease-out delay-100 ${
                 isStage4Visible ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-12 pointer-events-none'
               }`}>
                 
@@ -1321,17 +1368,17 @@ export const App: React.FC = () => {
           Scaled ~80% on desktop (origin-bottom) for compact, elegant proportion
           ========================================================================= */}
       <footer 
-        className={`relative z-30 w-full pb-3 md:pb-4 flex items-center justify-between text-[11px] font-mono tracking-[0.2em] transition-all duration-300 ease-out select-none md:scale-[0.82] lg:scale-[0.80] origin-bottom ${
+        className={`relative z-30 w-full pb-2.5 sm:pb-3 md:pb-4 flex items-center justify-between text-[11px] font-mono tracking-[0.2em] transition-all duration-300 ease-out select-none md:scale-[0.82] lg:scale-[0.80] origin-bottom ${
           stage === 'stage3_active' && !isZoomingInV3 && !isVoidDarkness
-            ? 'pl-20 md:pl-28 pr-6 md:pr-14 opacity-100 translate-y-0'
-            : 'px-6 md:px-14 opacity-90'
+            ? 'px-4 sm:px-8 md:pl-28 md:pr-14 opacity-100 translate-y-0'
+            : 'px-4 sm:px-8 md:px-14 opacity-90'
         }`}
       >
         {/* Left: Astrolabe Emblem & Rights Notice */}
-        <div className="flex items-center gap-3.5">
-          <GenshinAstrolabe size={32} />
-          <span className="text-[10px] md:text-[11px] font-mono tracking-[0.22em] text-[#D0C5E2] uppercase font-semibold">
-            OXID INTERACTIVE INC. · ALL RIGHTS RESERVED
+        <div className="flex items-center gap-2 sm:gap-3.5 min-w-0">
+          <GenshinAstrolabe size={26} className="sm:w-8 sm:h-8" />
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-mono tracking-[0.14em] sm:tracking-[0.22em] text-[#D0C5E2] uppercase font-semibold truncate">
+            OXID INTERACTIVE<span className="hidden xs:inline"> INC. · ALL RIGHTS RESERVED</span>
           </span>
         </div>
 
@@ -1345,7 +1392,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right: Policy Links & Live Version Status with Diamond Stars */}
-        <div className="hidden sm:flex items-center gap-4 text-[10px] md:text-[11px] font-mono tracking-[0.2em] text-[#C4B5DC]">
+        <div className="hidden sm:flex items-center gap-4 text-[10px] md:text-[11px] font-mono tracking-[0.2em] text-[#C4B5DC] flex-shrink-0">
           <span className="hover:text-white transition-colors cursor-pointer">PRIVACY POLICY</span>
           <span className="text-white/40">•</span>
           <span className="hover:text-white transition-colors cursor-pointer">TERMS OF SERVICE</span>

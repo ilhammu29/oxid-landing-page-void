@@ -112,25 +112,25 @@ export const GenshinBrandLogo: React.FC<{
   className = '',
 }) => {
   const content = symmetrical ? (
-    <div className={`flex items-center gap-2.5 sm:gap-3.5 group select-none ${className}`}>
+    <div className={`flex items-center gap-1.5 sm:gap-2.5 md:gap-3.5 group select-none ${className}`}>
       {/* Left Symmetrical Wing */}
       <div className="hidden sm:flex items-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
         <span className="text-[7px] text-[#E83EFF]/60 leading-none">✦</span>
-        <div className="w-8 sm:w-12 md:w-16 lg:w-20 h-[1px] bg-gradient-to-l from-[#E83EFF] via-[#E83EFF]/60 to-transparent" />
+        <div className="w-6 sm:w-12 md:w-16 lg:w-20 h-[1px] bg-gradient-to-l from-[#E83EFF] via-[#E83EFF]/60 to-transparent" />
         <span className="text-[9px] text-[#E83EFF] leading-none drop-shadow-[0_0_6px_#E83EFF]">✦</span>
       </div>
 
       {/* Celestial Astral Emblem */}
-      <div className="relative flex items-center justify-center flex-shrink-0">
-        <PrimogemStar size={38} glow="purple" />
+      <div className="relative flex items-center justify-center flex-shrink-0 scale-75 xs:scale-90 sm:scale-100">
+        <PrimogemStar size={36} glow="purple" />
       </div>
 
       {/* Typography (OXID + Subtitle) */}
       <div className="flex flex-col items-center">
-        <div className="flex items-center tracking-[0.24em] font-cinzel font-bold text-2xl md:text-[26px] text-white drop-shadow-[0_0_15px_rgba(232,62,255,0.7)] group-hover:drop-shadow-[0_0_22px_rgba(232,62,255,0.95)] transition-all">
+        <div className="flex items-center tracking-[0.2em] sm:tracking-[0.24em] font-cinzel font-bold text-lg xs:text-xl sm:text-2xl md:text-[26px] text-white drop-shadow-[0_0_15px_rgba(232,62,255,0.7)] group-hover:drop-shadow-[0_0_22px_rgba(232,62,255,0.95)] transition-all">
           <span className="relative inline-flex items-center justify-center">
             <span>O</span>
-            <span className="absolute inset-0 flex items-center justify-center text-[10px] text-[#E83EFF] drop-shadow-[0_0_6px_#E83EFF]">
+            <span className="absolute inset-0 flex items-center justify-center text-[9px] sm:text-[10px] text-[#E83EFF] drop-shadow-[0_0_6px_#E83EFF]">
               ✦
             </span>
           </span>
@@ -138,7 +138,7 @@ export const GenshinBrandLogo: React.FC<{
         </div>
 
         {/* Centered Subtitle */}
-        <span className="text-[8px] md:text-[9px] font-mono tracking-[0.32em] text-[#C4B5DC] group-hover:text-white uppercase -mt-0.5 transition-colors text-center">
+        <span className="text-[7px] sm:text-[8px] md:text-[9px] font-mono tracking-[0.2em] sm:tracking-[0.32em] text-[#C4B5DC] group-hover:text-white uppercase -mt-0.5 transition-colors text-center">
           {subtitle}
         </span>
       </div>
@@ -146,25 +146,25 @@ export const GenshinBrandLogo: React.FC<{
       {/* Right Symmetrical Wing */}
       <div className="hidden sm:flex items-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
         <span className="text-[9px] text-[#E83EFF] leading-none drop-shadow-[0_0_6px_#E83EFF]">✦</span>
-        <div className="w-8 sm:w-12 md:w-16 lg:w-20 h-[1px] bg-gradient-to-r from-[#E83EFF] via-[#E83EFF]/60 to-transparent" />
+        <div className="w-6 sm:w-12 md:w-16 lg:w-20 h-[1px] bg-gradient-to-r from-[#E83EFF] via-[#E83EFF]/60 to-transparent" />
         <span className="text-[7px] text-[#E83EFF]/60 leading-none">✦</span>
       </div>
     </div>
   ) : (
-    <div className={`flex items-center gap-3.5 group select-none ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3.5 group select-none ${className}`}>
       {/* Celestial Astral Emblem */}
-      <div className="relative flex items-center justify-center">
-        <PrimogemStar size={42} glow="purple" />
+      <div className="relative flex items-center justify-center scale-75 xs:scale-90 sm:scale-100 flex-shrink-0">
+        <PrimogemStar size={38} glow="purple" />
       </div>
 
       {/* Typography + Decorative Hairline */}
       <div className="flex flex-col">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* OXID with 4-point star embedded inside 'O' */}
-          <div className="flex items-center tracking-[0.22em] font-cinzel font-bold text-2xl md:text-[26px] text-white drop-shadow-[0_0_15px_rgba(232,62,255,0.7)] group-hover:drop-shadow-[0_0_22px_rgba(232,62,255,0.95)] transition-all">
+          <div className="flex items-center tracking-[0.2em] sm:tracking-[0.22em] font-cinzel font-bold text-lg xs:text-xl sm:text-2xl md:text-[26px] text-white drop-shadow-[0_0_15px_rgba(232,62,255,0.7)] group-hover:drop-shadow-[0_0_22px_rgba(232,62,255,0.95)] transition-all">
             <span className="relative inline-flex items-center justify-center">
               <span>O</span>
-              <span className="absolute inset-0 flex items-center justify-center text-[10px] text-[#E83EFF] drop-shadow-[0_0_6px_#E83EFF]">
+              <span className="absolute inset-0 flex items-center justify-center text-[9px] sm:text-[10px] text-[#E83EFF] drop-shadow-[0_0_6px_#E83EFF]">
                 ✦
               </span>
             </span>
@@ -182,7 +182,7 @@ export const GenshinBrandLogo: React.FC<{
         </div>
 
         {/* Subtitle */}
-        <span className="text-[9px] md:text-[10px] font-mono tracking-[0.28em] text-[#C4B5DC] group-hover:text-white uppercase -mt-0.5 transition-colors">
+        <span className="text-[7px] sm:text-[9px] md:text-[10px] font-mono tracking-[0.2em] sm:tracking-[0.28em] text-[#C4B5DC] group-hover:text-white uppercase -mt-0.5 transition-colors">
           {subtitle}
         </span>
       </div>
@@ -260,10 +260,10 @@ export const GenshinPillButton: React.FC<{
       type="button"
       onClick={onClick}
       title={title}
-      className={`relative group px-4 py-2 md:px-5 md:py-2.5 flex items-center gap-2.5 transition-all duration-300 backdrop-blur-xl focus:outline-none cursor-pointer ${className}`}
+      className={`relative group px-2.5 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 flex items-center gap-1.5 sm:gap-2.5 transition-all duration-300 backdrop-blur-xl focus:outline-none cursor-pointer ${className}`}
       style={{
         clipPath:
-          'polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px)',
+          'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
       }}
     >
       {/* Background with Cosmic Glow */}
@@ -284,33 +284,33 @@ export const GenshinPillButton: React.FC<{
         }`}
         style={{
           clipPath:
-            'polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px)',
+            'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
         }}
       />
 
       {/* Inner Double Hairline Frame */}
       <div
-        className={`absolute inset-[2.5px] border-[0.8px] transition-all duration-300 pointer-events-none opacity-70 group-hover:opacity-100 ${
+        className={`absolute inset-[2px] border-[0.8px] transition-all duration-300 pointer-events-none opacity-70 group-hover:opacity-100 ${
           isPurple
             ? 'border-[#E83EFF]/50 group-hover:border-[#F5D0FE]'
             : 'border-[#38E1FF]/50 group-hover:border-[#BAE6FD]'
         }`}
         style={{
           clipPath:
-            'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
+            'polygon(6px 0%, calc(100% - 6px) 0%, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0% calc(100% - 6px), 0% 6px)',
         }}
       />
 
       {/* Decorative Corner Bracket Diamond Accents */}
       <span
-        className={`absolute -top-1 left-2 text-[8px] transition-transform duration-300 group-hover:scale-125 ${
+        className={`absolute -top-1 left-1.5 sm:left-2 text-[7px] sm:text-[8px] transition-transform duration-300 group-hover:scale-125 ${
           isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'
         }`}
       >
         ✦
       </span>
       <span
-        className={`absolute -bottom-1 right-2 text-[8px] transition-transform duration-300 group-hover:scale-125 ${
+        className={`absolute -bottom-1 right-1.5 sm:right-2 text-[7px] sm:text-[8px] transition-transform duration-300 group-hover:scale-125 ${
           isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'
         }`}
       >
@@ -321,7 +321,7 @@ export const GenshinPillButton: React.FC<{
       {icon && <span className="relative z-10 flex-shrink-0">{icon}</span>}
 
       {/* Button Text */}
-      <span className="relative z-10 font-cinzel font-black text-xs md:text-[13px] tracking-[0.2em] uppercase text-white group-hover:text-[#F5F1FA] transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+      <span className="relative z-10 font-cinzel font-black text-[10px] sm:text-xs md:text-[13px] tracking-[0.14em] sm:tracking-[0.2em] uppercase text-white group-hover:text-[#F5F1FA] transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
         {children}
       </span>
     </button>
@@ -344,7 +344,7 @@ export const GenshinHeroButton: React.FC<{
     <button
       type="button"
       onClick={onClick}
-      className={`relative group w-auto min-w-[280px] sm:min-w-[340px] md:min-w-[380px] lg:min-w-[400px] h-auto min-h-[66px] md:min-h-[74px] flex items-center justify-between px-8 md:px-10 py-4 md:py-4.5 gap-5 md:gap-7 transition-all duration-300 cursor-pointer select-none focus:outline-none hover:scale-[1.03] active:scale-[0.98] ${className}`}
+      className={`relative group w-full max-w-[340px] sm:w-auto sm:min-w-[320px] md:min-w-[380px] lg:min-w-[400px] h-auto min-h-[56px] sm:min-h-[66px] md:min-h-[74px] flex items-center justify-between px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-4.5 gap-3.5 sm:gap-5 md:gap-7 transition-all duration-300 cursor-pointer select-none focus:outline-none hover:scale-[1.03] active:scale-[0.98] ${className}`}
     >
       {/* 1. Base Chamfered Decagon Glass Container */}
       <div
@@ -355,29 +355,16 @@ export const GenshinHeroButton: React.FC<{
         }`}
         style={{
           clipPath:
-            'polygon(18px 0%, calc(100% - 18px) 0%, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 18px 100%, 0% calc(100% - 18px), 0% 18px)',
+            'polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px)',
         }}
       />
 
       {/* 2. Genshin Outer Ornate Metallic Frame (2px Chamfered) */}
       <div
-        className={`absolute inset-0 border-[2px] transition-all duration-300 pointer-events-none ${
+        className={`absolute inset-0 border-[1.5px] sm:border-[2px] transition-all duration-300 pointer-events-none ${
           isPurple
-            ? 'border-[#E83EFF] shadow-[0_0_30px_rgba(232,62,255,0.6),inset_0_1px_1px_rgba(255,255,255,0.35)] group-hover:shadow-[0_0_50px_rgba(232,62,255,0.9)]'
-            : 'border-[#38E1FF] shadow-[0_0_30px_rgba(56,225,255,0.6),inset_0_1px_1px_rgba(255,255,255,0.35)] group-hover:shadow-[0_0_50px_rgba(56,225,255,0.9)]'
-        }`}
-        style={{
-          clipPath:
-            'polygon(18px 0%, calc(100% - 18px) 0%, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 18px 100%, 0% calc(100% - 18px), 0% 18px)',
-        }}
-      />
-
-      {/* 3. Genshin Signature Inner Double Hairline Frame (Chamfered Inset) */}
-      <div
-        className={`absolute inset-[3.5px] border-[1px] transition-all duration-300 pointer-events-none opacity-80 group-hover:opacity-100 ${
-          isPurple
-            ? 'border-[#E83EFF]/60 group-hover:border-[#F5D0FE]'
-            : 'border-[#38E1FF]/60 group-hover:border-[#BAE6FD]'
+            ? 'border-[#E83EFF] shadow-[0_0_24px_rgba(232,62,255,0.5),inset_0_1px_1px_rgba(255,255,255,0.35)] group-hover:shadow-[0_0_40px_rgba(232,62,255,0.9)]'
+            : 'border-[#38E1FF] shadow-[0_0_24px_rgba(56,225,255,0.5),inset_0_1px_1px_rgba(255,255,255,0.35)] group-hover:shadow-[0_0_40px_rgba(56,225,255,0.9)]'
         }`}
         style={{
           clipPath:
@@ -385,42 +372,55 @@ export const GenshinHeroButton: React.FC<{
         }}
       />
 
+      {/* 3. Genshin Signature Inner Double Hairline Frame (Chamfered Inset) */}
+      <div
+        className={`absolute inset-[2.5px] sm:inset-[3.5px] border-[0.8px] sm:border-[1px] transition-all duration-300 pointer-events-none opacity-80 group-hover:opacity-100 ${
+          isPurple
+            ? 'border-[#E83EFF]/60 group-hover:border-[#F5D0FE]'
+            : 'border-[#38E1FF]/60 group-hover:border-[#BAE6FD]'
+        }`}
+        style={{
+          clipPath:
+            'polygon(11px 0%, calc(100% - 11px) 0%, 100% 11px, 100% calc(100% - 11px), calc(100% - 11px) 100%, 11px 100%, 0% calc(100% - 11px), 0% 11px)',
+        }}
+      />
+
       {/* 4. Top & Bottom Genshin Filigree Crests */}
-      <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
-        <div className={`w-4 h-[1px] ${isPurple ? 'bg-gradient-to-r from-transparent to-[#E83EFF]' : 'bg-gradient-to-r from-transparent to-[#38E1FF]'}`} />
-        <span className={`text-[10px] leading-none drop-shadow-[0_0_6px_currentColor] ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
-        <div className={`w-4 h-[1px] ${isPurple ? 'bg-gradient-to-l from-transparent to-[#E83EFF]' : 'bg-gradient-to-l from-transparent to-[#38E1FF]'}`} />
+      <div className="absolute -top-1.5 sm:-top-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
+        <div className={`w-3 sm:w-4 h-[1px] ${isPurple ? 'bg-gradient-to-r from-transparent to-[#E83EFF]' : 'bg-gradient-to-r from-transparent to-[#38E1FF]'}`} />
+        <span className={`text-[8px] sm:text-[10px] leading-none drop-shadow-[0_0_6px_currentColor] ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+        <div className={`w-3 sm:w-4 h-[1px] ${isPurple ? 'bg-gradient-to-l from-transparent to-[#E83EFF]' : 'bg-gradient-to-l from-transparent to-[#38E1FF]'}`} />
       </div>
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
-        <div className={`w-4 h-[1px] ${isPurple ? 'bg-gradient-to-r from-transparent to-[#E83EFF]' : 'bg-gradient-to-r from-transparent to-[#38E1FF]'}`} />
-        <span className={`text-[10px] leading-none drop-shadow-[0_0_6px_currentColor] ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
-        <div className={`w-4 h-[1px] ${isPurple ? 'bg-gradient-to-l from-transparent to-[#E83EFF]' : 'bg-gradient-to-l from-transparent to-[#38E1FF]'}`} />
+      <div className="absolute -bottom-1.5 sm:-bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 pointer-events-none">
+        <div className={`w-3 sm:w-4 h-[1px] ${isPurple ? 'bg-gradient-to-r from-transparent to-[#E83EFF]' : 'bg-gradient-to-r from-transparent to-[#38E1FF]'}`} />
+        <span className={`text-[8px] sm:text-[10px] leading-none drop-shadow-[0_0_6px_currentColor] ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+        <div className={`w-3 sm:w-4 h-[1px] ${isPurple ? 'bg-gradient-to-l from-transparent to-[#E83EFF]' : 'bg-gradient-to-l from-transparent to-[#38E1FF]'}`} />
       </div>
 
       {/* 5. Four Corner Genshin Diamond Studs */}
-      <span className={`absolute -top-1.5 -left-1.5 text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
-      <span className={`absolute -top-1.5 -right-1.5 text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
-      <span className={`absolute -bottom-1.5 -left-1.5 text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
-      <span className={`absolute -bottom-1.5 -right-1.5 text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+      <span className={`absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 text-[9px] sm:text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+      <span className={`absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 text-[9px] sm:text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+      <span className={`absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 text-[9px] sm:text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
+      <span className={`absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 text-[9px] sm:text-[11px] drop-shadow-[0_0_6px_currentColor] transition-transform duration-300 group-hover:scale-125 ${isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'}`}>✦</span>
 
       {/* 6. Left & Right Flank Filigree Accents */}
-      <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-4 ${isPurple ? 'bg-[#E83EFF]/80' : 'bg-[#38E1FF]/80'}`} />
-      <div className={`absolute right-0 top-1/2 -translate-y-1/2 w-[2px] h-4 ${isPurple ? 'bg-[#E83EFF]/80' : 'bg-[#38E1FF]/80'}`} />
+      <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-3 sm:h-4 ${isPurple ? 'bg-[#E83EFF]/80' : 'bg-[#38E1FF]/80'}`} />
+      <div className={`absolute right-0 top-1/2 -translate-y-1/2 w-[2px] h-3 sm:h-4 ${isPurple ? 'bg-[#E83EFF]/80' : 'bg-[#38E1FF]/80'}`} />
 
       {/* 7. Left Icon: Radiant Primogem Star */}
-      <div className="relative z-10 flex items-center justify-center flex-shrink-0">
-        <PrimogemStar size={32} glow={isPurple ? 'purple' : 'cyan'} />
+      <div className="relative z-10 flex items-center justify-center flex-shrink-0 scale-80 sm:scale-100">
+        <PrimogemStar size={30} glow={isPurple ? 'purple' : 'cyan'} />
       </div>
 
       {/* 8. Main Button Text: Bold Genshin Impact Typography, Thickened & Sized Proportional */}
-      <span className="relative z-10 font-cinzel font-black text-base sm:text-lg md:text-xl tracking-[0.22em] uppercase text-white group-hover:text-[#F5F1FA] transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] drop-shadow-[0_0_12px_rgba(232,62,255,0.5)]">
+      <span className="relative z-10 font-cinzel font-black text-xs xs:text-sm sm:text-base md:text-xl tracking-[0.16em] sm:tracking-[0.22em] uppercase text-white group-hover:text-[#F5F1FA] transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] drop-shadow-[0_0_12px_rgba(232,62,255,0.5)]">
         {title}
       </span>
 
       {/* 9. Right Arrow Icon */}
       <div className="relative z-10 flex items-center flex-shrink-0">
         <ArrowRight
-          className={`w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1.5 drop-shadow-[0_0_8px_currentColor] ${
+          className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-x-1.5 drop-shadow-[0_0_8px_currentColor] ${
             isPurple ? 'text-[#E83EFF]' : 'text-[#38E1FF]'
           }`}
         />
